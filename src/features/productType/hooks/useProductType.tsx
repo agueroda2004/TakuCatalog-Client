@@ -91,7 +91,7 @@ export default function useProductType() {
     { id: string } & ProductTypePayload
   >({
     mutationFn: async ({ id, ...payload }) =>
-      api.patch(`/productType/${id}`, { ...payload, storeId }),
+      api.patch(`/productType/${id}/store/${storeId}`, payload),
     onSuccess: async () => {
       Promise.all([
         queryClient.invalidateQueries({ queryKey: [QUERY_KEY] }),
@@ -102,7 +102,8 @@ export default function useProductType() {
 
   const deleteProductType = useMutation<void, ApiResponseError, { id: string }>(
     {
-      mutationFn: async ({ id }) => api.delete(`/productType/${id}`),
+      mutationFn: async ({ id }) =>
+        api.delete(`/productType/${id}/store/${storeId}`),
       onSuccess: async () => {
         Promise.all([
           queryClient.invalidateQueries({ queryKey: [QUERY_KEY] }),

@@ -87,7 +87,7 @@ export default function useSubCategory() {
     { id: string } & SubCategoryUpdatePayload
   >({
     mutationFn: async ({ id, ...payload }) =>
-      await api.patch(`/subCategory/${id}`, payload),
+      await api.patch(`/subCategory/${id}/store/${storeId}`, payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY] });
     },
@@ -95,7 +95,8 @@ export default function useSubCategory() {
 
   const deleteSubCategory = useMutation<void, ApiResponseError, { id: string }>(
     {
-      mutationFn: async ({ id }) => await api.delete(`/subCategory/${id}`),
+      mutationFn: async ({ id }) =>
+        await api.delete(`/subCategory/${id}/store/${storeId}`),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: [QUERY_KEY] });
       },
