@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #f8f9ff;
+  --color-primary: #1d4ed8;
+  --color-text-secondary: #000000b3;
+  --font-Confortaa: "Comfortaa", sans-serif;
+
+  --animate-custom-enter: custom-enter 0.3s ease-out forwards;
+  --animate-custom-leave: custom-leave 0.2s ease-in forwards;
+
+  @keyframes custom-enter {
+    0% {
+      transform: translateY(-20px) scale(0.95);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes custom-leave {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20px) scale(0.95);
+      opacity: 0;
+    }
+  }
+}
